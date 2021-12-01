@@ -1,0 +1,33 @@
+[
+	{
+		id:1,
+		name:"Minh",
+		age: 20
+	},
+	{
+		id:2,
+		name:"Khang",
+		age: 40
+	},
+	{
+		id:3,
+		name:"Huynh",
+		age: 40
+	}, 
+	{
+		id:4,
+		name:"Linh",
+		age: 30
+	},
+	{
+		id:5,
+		name:"Kham",
+		age: 30
+	},
+	{
+		id:6,
+		name:"Vu",
+		age: 40
+	}
+
+]
