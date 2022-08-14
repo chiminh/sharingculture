@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/presentation/resources/routes_manager.dart';
 import 'package:flutter_demo/presentation/resources/strings_manager.dart';
 import 'package:flutter_demo/widgets/menu_widget.dart';
 
@@ -19,12 +20,29 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              MenuWidget(text: AppStrings.sqlDemo, onClick: () {}),
-              MenuWidget(text: AppStrings.nonSqlDemo, onClick: () {}),
               MenuWidget(
-                  text: AppStrings.compareSqlAndNonSqlDemo, onClick: () {}),
+                  text: AppStrings.sqlDemo,
+                  onClick: () => _openSQLDemo(context)),
+              MenuWidget(
+                  text: AppStrings.nonSqlDemo,
+                  onClick: () => _openNonSQLDemo(context)),
+              MenuWidget(
+                  text: AppStrings.compareSqlAndNonSqlDemo,
+                  onClick: () => _openCompareScreen(context)),
             ]),
       ),
     );
+  }
+
+  void _openSQLDemo(BuildContext context) {
+    Navigator.pushNamed(context, Routes.sqlScreenRoute);
+  }
+
+  void _openNonSQLDemo(BuildContext context) {
+    Navigator.pushNamed(context, Routes.nonSqlScreenRoute);
+  }
+
+  void _openCompareScreen(BuildContext context) {
+    Navigator.pushNamed(context, Routes.compareScreenRoute);
   }
 }

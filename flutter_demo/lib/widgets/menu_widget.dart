@@ -12,7 +12,7 @@ class MenuWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: GestureDetector(
-        onTap: () => onClick,
+        onTap: () => onClick.call(),
         child: Card(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
