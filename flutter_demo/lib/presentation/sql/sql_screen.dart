@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/model/user.dart';
 import 'package:flutter_demo/presentation/resources/strings_manager.dart';
 import 'package:flutter_demo/presentation/resources/values_manager.dart';
+import 'package:flutter_demo/widgets/user_widget.dart';
 
 class SQLScreen extends StatefulWidget {
   const SQLScreen({Key? key}) : super(key: key);
@@ -51,7 +53,9 @@ class _SQLScreenState extends State<SQLScreen> {
               Expanded(
                   child: ListView.builder(
                 itemBuilder: (context, index) {
-                  return Text("aaa");
+                  return UserWidget(
+                    user: User(username: "Minh", age: 20),
+                  );
                 },
                 itemCount: 1000,
               ))
