@@ -5,7 +5,15 @@ import 'package:flutter_demo/presentation/resources/values_manager.dart';
 // ignore: must_be_immutable
 class UserWidget extends StatelessWidget {
   User user;
-  UserWidget({Key? key, required this.user}) : super(key: key);
+  Function updateAction;
+  Function deleteAction;
+
+  UserWidget(
+      {Key? key,
+      required this.user,
+      required this.updateAction,
+      required this.deleteAction})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +31,12 @@ class UserWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.delete)),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.edit))
+                  IconButton(
+                      onPressed: () => deleteAction(user),
+                      icon: const Icon(Icons.delete)),
+                  IconButton(
+                      onPressed: () => updateAction(user),
+                      icon: const Icon(Icons.edit))
                 ],
               )
             ],

@@ -44,7 +44,6 @@ class DBHelper {
   Future<List<User>> getUsers() async {
     _db ??= await _getDB();
 
-    String sql = "SELECT * FROM $tableUser";
     List<Map<String, dynamic>> result = await _db!.query(tableUser);
 
     List<User> users = [];

@@ -4,6 +4,8 @@ import 'package:flutter_demo/presentation/resources/values_manager.dart';
 import 'package:flutter_demo/viewmodel/sql_viewmodel.dart';
 import 'package:flutter_demo/widgets/user_widget.dart';
 
+import '../../model/user.dart';
+
 class SQLScreen extends StatefulWidget {
   const SQLScreen({Key? key}) : super(key: key);
 
@@ -81,6 +83,8 @@ class _SQLScreenState extends State<SQLScreen> {
                       itemBuilder: (context, index) {
                         return UserWidget(
                           user: data.users[index],
+                          updateAction: _updateAction,
+                          deleteAction: _deleteAction,
                         );
                       },
                       itemCount: data.users.length,
@@ -109,11 +113,52 @@ class _SQLScreenState extends State<SQLScreen> {
     }
     _viewModel.insertUser(name, int.parse(age));
 
+    _clearTexts();
+  }
+
+  void _update() {
+    final name = _nameEditingController.text;
+    final age = _ageEditingController.text;
+    if (name.isEmpty || age.isEmpty) {
+      return;
+    }
+    _viewModel.updateUser(name, int.parse(age));
+    _clearTexts();
+  }
+
+  void _deleteAction(User user) {
+    _showConfirmDeleteDialog();
+  }
+
+  void _updateAction(User user) {
+    _nameEditingController.text = user.username;
+    _ageEditingController.text = "${user.age}";
+    _viewModel.selectedUser = user;
+  }
+
+  void _clearTexts() {
     _nameEditingController.text = "";
     _ageEditingController.text = "";
   }
 
-  void _update() {}
-
-  void _delete() {}
+  void _showConfirmDeleteDialog() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Delete Confirmation"),
+            content: const Text("Do you want to delete this user?"),
+            actions: [
+              ElevatedButton(
+                onPressed: () => {},
+                child: const Text("Delete"),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                ),
+              ),
+              ElevatedButton(onPressed: () => {}, child: const Text("Cancel"))
+            ],
+          );
+        });
+  }
 }

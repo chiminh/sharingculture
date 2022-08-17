@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/rendering.dart';
 import 'package:flutter_demo/helper/db_helper.dart';
 import 'package:flutter_demo/viewmodel/base_viewmodel.dart';
 
@@ -11,6 +10,7 @@ class SQLViewModel extends BaseViewModel
   final StreamController _streamController =
       StreamController<SQLViewModelObject>();
   List<User> _users = [];
+  User? selectedUser;
 
   @override
   void onDisposed() {
@@ -32,7 +32,12 @@ class SQLViewModel extends BaseViewModel
   }
 
   @override
-  void updateUser(int userId, String name, int age) {}
+  void updateUser(String name, int age) async {
+    if (selectedUser == null) return;
+    await DBHelper.getInstance()
+        .udpateUser(User(id: selectedUser!.id, username: name, age: age));
+    _getUsers();
+  }
 
   @override
   Sink get sqlViewModelInputs => _streamController.sink;
@@ -54,7 +59,7 @@ class SQLViewModel extends BaseViewModel
 
 abstract class SQLViewModelInputs {
   void insertUser(String name, int age);
-  void updateUser(int userId, String name, int age);
+  void updateUser(String name, int age);
   void deleteUser(int userId);
   Sink get sqlViewModelInputs;
 }
