@@ -41,6 +41,11 @@ class DBHelper {
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
   }
 
+  Future<void> deleteUser(int userId) async {
+    _db ??= await _getDB();
+    await _db?.delete(tableUser, where: "$fieldId=?", whereArgs: [userId]);
+  }
+
   Future<List<User>> getUsers() async {
     _db ??= await _getDB();
 

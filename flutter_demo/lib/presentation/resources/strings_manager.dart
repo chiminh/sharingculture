@@ -8,4 +8,7 @@ class AppStrings {
   static const insert = "Insert";
   static const update = "Update";
   static const delete = "Delete";
+  static const cancel = "Cancel";
+  static const deleteConfirmation = "Delete Confirmation";
+  static const deleteConfirmationMsg = "Do you want to delete this user?";
 }

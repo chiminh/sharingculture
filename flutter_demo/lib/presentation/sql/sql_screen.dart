@@ -127,6 +127,7 @@ class _SQLScreenState extends State<SQLScreen> {
   }
 
   void _deleteAction(User user) {
+    _viewModel.selectedUser = user;
     _showConfirmDeleteDialog();
   }
 
@@ -141,22 +142,31 @@ class _SQLScreenState extends State<SQLScreen> {
     _ageEditingController.text = "";
   }
 
+  void _deleteSelectedUser() {
+    _viewModel.deleteSelectedUser();
+  }
+
   void _showConfirmDeleteDialog() {
     showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text("Delete Confirmation"),
-            content: const Text("Do you want to delete this user?"),
+            title: const Text(AppStrings.deleteConfirmation),
+            content: const Text(AppStrings.deleteConfirmationMsg),
             actions: [
               ElevatedButton(
-                onPressed: () => {},
-                child: const Text("Delete"),
+                onPressed: () {
+                  _deleteSelectedUser();
+                  Navigator.pop(context);
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
                 ),
+                child: const Text(AppStrings.delete),
               ),
-              ElevatedButton(onPressed: () => {}, child: const Text("Cancel"))
+              ElevatedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text(AppStrings.cancel))
             ],
           );
         });

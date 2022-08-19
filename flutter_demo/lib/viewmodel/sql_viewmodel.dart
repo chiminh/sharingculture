@@ -23,7 +23,11 @@ class SQLViewModel extends BaseViewModel
   }
 
   @override
-  void deleteUser(int userId) {}
+  void deleteSelectedUser() async {
+    if (selectedUser == null) return;
+    await DBHelper.getInstance().deleteUser(selectedUser!.id);
+    _getUsers();
+  }
 
   @override
   void insertUser(String name, int age) async {
@@ -60,7 +64,7 @@ class SQLViewModel extends BaseViewModel
 abstract class SQLViewModelInputs {
   void insertUser(String name, int age);
   void updateUser(String name, int age);
-  void deleteUser(int userId);
+  void deleteSelectedUser();
   Sink get sqlViewModelInputs;
 }
 
