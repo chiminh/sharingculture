@@ -3,6 +3,7 @@ import 'package:flutter_demo/presentation/compare/compare_screen.dart';
 import 'package:flutter_demo/presentation/home/home_screen.dart';
 import 'package:flutter_demo/presentation/non_sql/non_sql_screen.dart';
 import 'package:flutter_demo/presentation/sql/sql_screen.dart';
+import 'package:isar/isar.dart';
 
 class Routes {
   static const homeRoute = "/";
@@ -12,11 +13,12 @@ class Routes {
 }
 
 class RouteGenerator {
-  static Map<String, Widget Function(BuildContext)> getRoute() {
+  static Map<String, Widget Function(BuildContext)> getRoute(
+      {required Isar isar}) {
     return {
       Routes.sqlScreenRoute: (_) => const SQLScreen(),
       Routes.homeRoute: (_) => const HomeScreen(),
-      Routes.nonSqlScreenRoute: (_) => const NonSQLScreen(),
+      Routes.nonSqlScreenRoute: (_) => NonSQLScreen(isar: isar),
       Routes.compareScreenRoute: (_) => const CompareScreen(),
     };
   }

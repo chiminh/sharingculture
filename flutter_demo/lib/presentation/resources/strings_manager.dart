@@ -7,6 +7,7 @@ class AppStrings {
   static const age = "Age";
   static const insert = "Insert";
   static const update = "Update";
+  static const filter = "Filter";
   static const delete = "Delete";
   static const cancel = "Cancel";
   static const deleteConfirmation = "Delete Confirmation";

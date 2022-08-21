@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 
 import '../model/user.dart';
@@ -66,8 +67,10 @@ class DBHelper {
   }
 
   static Future<sql.Database> _getDB() async {
+    debugPrint("getDB");
     final dbPath = await sql.getDatabasesPath();
     return sql.openDatabase("$dbPath/flutterdemo.db", onCreate: (db, version) {
+      debugPrint("onCreate db: $version");
       // create user table
       String userSQL =
           "CREATE TABLE $tableUser ($fieldId INTEGER PRIMARY KEY AUTOINCREMENT";
@@ -75,6 +78,8 @@ class DBHelper {
       userSQL += ", $fieldAge INTEGER DEFAULT 0)";
 
       db.execute(userSQL);
-    }, version: 1);
+    }, onUpgrade: (db, oldVersion, newVersion) {
+      debugPrint("$oldVersion $newVersion");
+    }, version: 4);
   }
 }
