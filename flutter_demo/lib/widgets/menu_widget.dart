@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/presentation/resources/values_manager.dart';
 
 class MenuWidget extends StatelessWidget {
   final String text;
@@ -19,6 +20,8 @@ class MenuWidget extends StatelessWidget {
             child: Text(
               text,
               textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontSize: AppSize.s20, fontWeight: FontWeight.w500),
             ),
           ),
         ),

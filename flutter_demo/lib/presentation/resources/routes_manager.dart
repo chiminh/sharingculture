@@ -19,7 +19,9 @@ class RouteGenerator {
       Routes.sqlScreenRoute: (_) => const SQLScreen(),
       Routes.homeRoute: (_) => const HomeScreen(),
       Routes.nonSqlScreenRoute: (_) => NonSQLScreen(isar: isar),
-      Routes.compareScreenRoute: (_) => const CompareScreen(),
+      Routes.compareScreenRoute: (_) => CompareScreen(
+            isar: isar,
+          ),
     };
   }
 }

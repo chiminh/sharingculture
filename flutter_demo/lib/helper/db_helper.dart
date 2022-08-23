@@ -47,6 +47,11 @@ class DBHelper {
     await _db?.delete(tableUser, where: "$fieldId=?", whereArgs: [userId]);
   }
 
+  Future<void> deleteAllUsers() async {
+    _db ??= await _getDB();
+    await _db?.delete(tableUser);
+  }
+
   Future<List<User>> getUsers() async {
     _db ??= await _getDB();
 
@@ -66,8 +71,27 @@ class DBHelper {
     return users;
   }
 
+  Future<List<User>> filterUsers(int age) async {
+    _db ??= await _getDB();
+
+    List<Map<String, dynamic>> result =
+        await _db!.query(tableUser, where: "$fieldAge<=?", whereArgs: [age]);
+
+    List<User> users = [];
+
+    if (result.isNotEmpty) {
+      for (Map<String, dynamic> data in result) {
+        users.add(User(
+            id: data[fieldId] as int,
+            username: data[fieldName] as String,
+            age: data[fieldAge] as int));
+      }
+    }
+
+    return users;
+  }
+
   static Future<sql.Database> _getDB() async {
-    debugPrint("getDB");
     final dbPath = await sql.getDatabasesPath();
     return sql.openDatabase("$dbPath/flutterdemo.db", onCreate: (db, version) {
       debugPrint("onCreate db: $version");
