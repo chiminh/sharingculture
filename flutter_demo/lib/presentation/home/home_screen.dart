@@ -24,10 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   text: AppStrings.sqlDemo,
                   onClick: () => _openSQLDemo(context)),
               MenuWidget(
-                  text: AppStrings.nonSqlDemo,
+                  text: AppStrings.noSqlDemo,
                   onClick: () => _openNonSQLDemo(context)),
               MenuWidget(
-                  text: AppStrings.compareSqlAndNonSqlDemo,
+                  text: AppStrings.compareSqlAndNoSqlDemo,
                   onClick: () => _openCompareScreen(context)),
             ]),
       ),
@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _openNonSQLDemo(BuildContext context) {
-    Navigator.pushNamed(context, Routes.nonSqlScreenRoute);
+    Navigator.pushNamed(context, Routes.noSqlScreenRoute);
   }
 
   void _openCompareScreen(BuildContext context) {

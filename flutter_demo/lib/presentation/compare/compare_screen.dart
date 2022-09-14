@@ -37,7 +37,7 @@ class _CompareScreenState extends State<CompareScreen> {
 
   Widget _getContentViews(CompareViewModelObject? data) {
     return Scaffold(
-      appBar: AppBar(title: const Text(AppStrings.compareSqlAndNonSqlDemo)),
+      appBar: AppBar(title: const Text(AppStrings.compareSqlAndNoSqlDemo)),
       body: Padding(
         padding: const EdgeInsets.all(AppPadding.p20),
         child: Column(
@@ -46,9 +46,9 @@ class _CompareScreenState extends State<CompareScreen> {
             children: [
               Row(
                 children: [
-                  const Text(AppStrings.isNonSQL),
+                  const Text(AppStrings.isNoSQL),
                   Switch(
-                      value: data?.isNonSQLStatus ?? false,
+                      value: data?.isNoSQLStatus ?? false,
                       onChanged: _switchStatusChanged)
                 ],
               ),

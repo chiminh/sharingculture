@@ -5,14 +5,14 @@ import 'package:flutter_demo/model/contact.dart';
 import 'package:isar/isar.dart';
 import 'base_viewmodel.dart';
 
-class NonSQLViewModel extends BaseViewModel
-    implements NonSQLViewModelInputs, NonSqlViewModelOutputs {
+class NoSQLViewModel extends BaseViewModel
+    implements NoSQLViewModelInputs, NoSqlViewModelOutputs {
   final StreamController _streamController =
-      StreamController<NonSQLViewModelObject>();
+      StreamController<NoSQLViewModelObject>();
   List<Contact> _contacts = [];
   Contact? selectedContact;
   Isar isar;
-  NonSQLViewModel({required this.isar});
+  NoSQLViewModel({required this.isar});
 
   @override
   void onStart() {
@@ -88,7 +88,7 @@ class NonSQLViewModel extends BaseViewModel
   Sink get viewModelInputs => _streamController.sink;
 
   @override
-  Stream<NonSQLViewModelObject> get viewModelOutputs =>
+  Stream<NoSQLViewModelObject> get viewModelOutputs =>
       _streamController.stream.map((event) => event);
 
   void _getContacts() async {
@@ -98,11 +98,11 @@ class NonSQLViewModel extends BaseViewModel
 
   void _postDataToViews() {
     _streamController.add(
-        NonSQLViewModelObject(contacts: _contacts, lenght: _contacts.length));
+        NoSQLViewModelObject(contacts: _contacts, lenght: _contacts.length));
   }
 }
 
-abstract class NonSQLViewModelInputs {
+abstract class NoSQLViewModelInputs {
   void insertContact(String name, int age);
   void updateContact(String name, int age);
   void queryContact(String name, int age);
@@ -111,12 +111,12 @@ abstract class NonSQLViewModelInputs {
   Sink get viewModelInputs;
 }
 
-abstract class NonSqlViewModelOutputs {
-  Stream<NonSQLViewModelObject> get viewModelOutputs;
+abstract class NoSqlViewModelOutputs {
+  Stream<NoSQLViewModelObject> get viewModelOutputs;
 }
 
-class NonSQLViewModelObject {
+class NoSQLViewModelObject {
   List<Contact> contacts;
   int lenght;
-  NonSQLViewModelObject({required this.contacts, required this.lenght});
+  NoSQLViewModelObject({required this.contacts, required this.lenght});
 }

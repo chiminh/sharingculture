@@ -2,34 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/model/contact.dart';
 import 'package:flutter_demo/widgets/contact_widget.dart';
 import 'package:isar/isar.dart';
-import '../../viewmodel/non_sql_viewmodel.dart';
+import '../../viewmodel/nosql_viewmodel.dart';
 import '../resources/strings_manager.dart';
 import '../resources/values_manager.dart';
 
 // ignore: must_be_immutable
-class NonSQLScreen extends StatefulWidget {
+class NoSQLScreen extends StatefulWidget {
   Isar isar;
-  NonSQLScreen({Key? key, required this.isar}) : super(key: key);
+  NoSQLScreen({Key? key, required this.isar}) : super(key: key);
 
   @override
-  State<NonSQLScreen> createState() => _NonSQLScreenState();
+  State<NoSQLScreen> createState() => _NoSQLScreenState();
 }
 
-class _NonSQLScreenState extends State<NonSQLScreen> {
-  late NonSQLViewModel _viewModel;
+class _NoSQLScreenState extends State<NoSQLScreen> {
+  late NoSQLViewModel _viewModel;
   final TextEditingController _nameEditingController = TextEditingController();
   final TextEditingController _ageEditingController = TextEditingController();
 
   @override
   void initState() {
-    _viewModel = NonSQLViewModel(isar: widget.isar);
+    _viewModel = NoSQLViewModel(isar: widget.isar);
     _viewModel.onStart();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<NonSQLViewModelObject>(
+    return StreamBuilder<NoSQLViewModelObject>(
         stream: _viewModel.viewModelOutputs,
         builder: ((context, snapshot) {
           return _getContentViews(snapshot.data);
@@ -42,9 +42,9 @@ class _NonSQLScreenState extends State<NonSQLScreen> {
     super.dispose();
   }
 
-  Widget _getContentViews(NonSQLViewModelObject? data) {
+  Widget _getContentViews(NoSQLViewModelObject? data) {
     return Scaffold(
-      appBar: AppBar(title: const Text(AppStrings.nonSqlDemo)),
+      appBar: AppBar(title: const Text(AppStrings.noSqlDemo)),
       body: Padding(
         padding: const EdgeInsets.all(AppPadding.p20),
         child: data == null
