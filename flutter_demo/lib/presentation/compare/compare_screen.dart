@@ -52,6 +52,7 @@ class _CompareScreenState extends State<CompareScreen> {
                       onChanged: _switchStatusChanged)
                 ],
               ),
+              const Text("${AppStrings.times} ${CompareViewModel.count}"),
               TextField(
                   controller: _ageEditingController,
                   decoration: _getInputDecoration(AppStrings.ageForFilter),

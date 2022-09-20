@@ -19,4 +19,5 @@ class AppStrings {
   static const periodTime = "Period time (in second)";
   static const loading = "Loading...";
   static const ageForFilter = "Input age for filter";
+  static const times = "Times:";
 }
