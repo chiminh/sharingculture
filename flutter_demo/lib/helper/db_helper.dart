@@ -19,7 +19,7 @@ class DBHelper {
     return _dbHelper!;
   }
 
-  Future<void> udpateUser(User user) async {
+  Future<void> updateUser(User user) async {
     _db ??= await _getDB();
     _db?.update(
         tableUser,

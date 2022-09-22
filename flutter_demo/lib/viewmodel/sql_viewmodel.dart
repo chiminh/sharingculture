@@ -39,7 +39,7 @@ class SQLViewModel extends BaseViewModel
   void updateUser(String name, int age) async {
     if (selectedUser == null) return;
     await DBHelper.getInstance()
-        .udpateUser(User(id: selectedUser!.id, username: name, age: age));
+        .updateUser(User(id: selectedUser!.id, username: name, age: age));
     _getUsers();
   }
 
