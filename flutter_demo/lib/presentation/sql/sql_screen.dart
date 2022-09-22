@@ -75,7 +75,10 @@ class _SQLScreenState extends State<SQLScreen> {
                         ),
                         ElevatedButton(
                             onPressed: () => _update(),
-                            child: const Text(AppStrings.update))
+                            child: const Text(AppStrings.update)),
+                        ElevatedButton(
+                            onPressed: () => _filter(),
+                            child: const Text(AppStrings.filter))
                       ],
                     ),
                     Expanded(
@@ -124,6 +127,14 @@ class _SQLScreenState extends State<SQLScreen> {
     }
     _viewModel.updateUser(name, int.parse(age));
     _clearTexts();
+  }
+
+  void _filter() {
+    final age = _ageEditingController.text;
+    if (age.isEmpty) {
+      return;
+    }
+    _viewModel.filterUsers(int.parse(age));
   }
 
   void _deleteAction(User user) {

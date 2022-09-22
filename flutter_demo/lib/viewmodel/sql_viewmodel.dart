@@ -44,6 +44,12 @@ class SQLViewModel extends BaseViewModel
   }
 
   @override
+  void filterUsers(int age) async {
+    _users = await DBHelper.getInstance().filterUsers(age);
+    _postDataToViews();
+  }
+
+  @override
   Sink get sqlViewModelInputs => _streamController.sink;
 
   @override
@@ -64,6 +70,7 @@ class SQLViewModel extends BaseViewModel
 abstract class SQLViewModelInputs {
   void insertUser(String name, int age);
   void updateUser(String name, int age);
+  void filterUsers(int age);
   void deleteSelectedUser();
   Sink get sqlViewModelInputs;
 }
